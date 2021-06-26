@@ -16,6 +16,7 @@ raw_text = open(file, 'r').read()
 
 replace_dict = {'e.g.': 'por exemplo',
                 'ex.' : 'por exemplo',
+                'Exmos.' : 'Exmos',
                 '* '  : '', 
                 '\t'  : '',}
 
