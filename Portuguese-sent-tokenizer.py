@@ -20,7 +20,7 @@ replace_dict = {'e.g.': 'por exemplo',
                 '\t'  : '',}
 
 raw_text = replace_all(raw_text, replace_dict)
-re.sub(r'\n+',  '. ', raw_text)
+raw_text = re.sub(r'(\n+)',  '. ', raw_text).replace('..', '.').replace(';.', '.')
 
 sentences = sent_tokenizer.tokenize(raw_text)
 
