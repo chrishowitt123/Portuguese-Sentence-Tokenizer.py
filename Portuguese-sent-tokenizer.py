@@ -1,7 +1,10 @@
 import nltk
 import re
+import os
 nltk.download('machado')
 sent_tokenizer=nltk.data.load('tokenizers/punkt/portuguese.pickle')
+
+os.chdir(r'C:\Users\chris\Documents\Transgola\Clients\PROJECTS\2021\396200521_TM_ON\Orignal')
 
 def replace_all(text, dic):
     for i, j in dic.items():
@@ -24,3 +27,8 @@ sentences = sent_tokenizer.tokenize(raw_text)
 for sent in sentences:
     print(sent)
     print('\n')
+    
+textfile = open("portuguese_sents.txt", "w")
+for sent in sentences:
+    textfile.write(sent + "\n")
+textfile.close()
