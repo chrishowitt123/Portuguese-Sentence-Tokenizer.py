@@ -17,10 +17,10 @@ raw_text = open(file, 'r').read()
 replace_dict = {'e.g.': 'por exemplo',
                 'ex.' : 'por exemplo',
                 '* '  : '', 
-                '\t'  : '',
-                '\n'  : '. '}
+                '\t'  : '',}
 
 raw_text = replace_all(raw_text, replace_dict)
+re.sub(r'\n+',  '. ', raw_text)
 
 sentences = sent_tokenizer.tokenize(raw_text)
 
