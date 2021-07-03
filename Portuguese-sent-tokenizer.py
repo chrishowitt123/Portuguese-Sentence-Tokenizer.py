@@ -1,18 +1,19 @@
 import nltk
 import re
+import docx2txt
 import os
 nltk.download('machado')
 sent_tokenizer=nltk.data.load('tokenizers/punkt/portuguese.pickle')
 
-os.chdir(r'C:\Users\chris\Documents\Transgola\Clients\PROJECTS\2021\396200521_TM_ON\Orignal')
+os.chdir(r'C:\Users\chris\Desktop\Find and replace')
 
 def replace_all(text, dic):
     for i, j in dic.items():
         text = text.replace(i, j)
     return text
 
-file = r"C:\Users\chris\Documents\Transgola\Clients\PROJECTS\2021\396200521_TM_ON\Orignal\Relatório e Contas 2020_2370421_VF.txt"
-raw_text = open(file, 'r').read()
+file = r"HLA.P.1653_RNT EIA Aquisição Sísmica Offshore Bloco 5-06_Final_20201105.docx"
+text = docx2txt.process(file)
 
 replace_dict = {'e.g.': 'por exemplo',
                 'ex.' : 'por exemplo',
@@ -20,16 +21,16 @@ replace_dict = {'e.g.': 'por exemplo',
                 '* '  : '', 
                 '\t'  : '',}
 
-raw_text = replace_all(raw_text, replace_dict)
-raw_text = re.sub(r'(\n+)',  '. ', raw_text).replace('..', '.').replace(';.', '.')
+text = replace_all(text, replace_dict)
+text = re.sub(r'(\n+)',  '\n', text).replace('..', '.').replace(';.', '.').replace(';.', '.')
 
-sentences = sent_tokenizer.tokenize(raw_text)
+sentences = sent_tokenizer.tokenize(text)
 
 for sent in sentences:
     print(sent)
     print('\n')
     
-textfile = open("portuguese_sents.txt", "w")
+textfile = open(f"SPLITS_{file}", "w")
 for sent in sentences:
     textfile.write(sent + "\n")
 textfile.close()
