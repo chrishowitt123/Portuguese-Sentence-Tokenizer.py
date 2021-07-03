@@ -30,7 +30,7 @@ for sent in sentences:
     print(sent)
     print('\n')
     
-textfile = open(f"SPLITS_{file}", "w")
+textfile = open(f"SPLITS_{file.replace('.docx', '.txt')}", "w")
 for sent in sentences:
     textfile.write(sent + "\n")
 textfile.close()
